@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AddView: View {
+    @ObservedObject var expenses: Expenses
     @State private var name = ""
     @State private var type = "Personal"
     @State private var amount = 0.0
@@ -28,12 +29,14 @@ struct AddView: View {
                 TextField("Amount", value: $amount, format: .currency(code: "USD"))
                     .keyboardType(.decimalPad)
             }
+            
+            .navigationTitle("Add New Expense")
         }
     }
 }
 
 struct AddView_Previews: PreviewProvider {
     static var previews: some View {
-        AddView()
+        AddView(expenses: Expenses())
     }
 }
